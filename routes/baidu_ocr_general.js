@@ -7,8 +7,7 @@ var {
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
-  console.log(req)
-  baidu_ocr.common_ocr(req.body.picType, req.body.imageUrl, {})
+  baidu_ocr.common_ocr(req.body.picType, req.body.imageUrl, req.body.requestId, {})
     .then(data => {
       console.log(data);
       res.json(data);

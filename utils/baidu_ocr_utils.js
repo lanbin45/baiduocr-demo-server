@@ -8,7 +8,8 @@ var {
 // var ImageUtils = require('../utils/image_utils')
 
 const AccessTokenUrl = 'https://aip.baidubce.com/oauth/2.0/token?';
-const Basic_Url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/';
+const Basic_Url = 'https://aip.baidubce.com/rest/2.0/ocr/v1';
+const Form_Base_Url = 'https://aip.baidubce.com/rest/2.0/solution/v1'
 /* const General_Basic_Url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic';
 const Accurate_Basic_Url = 'https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic'; */
 class BaiduOCR {
@@ -60,11 +61,26 @@ class BaiduOCR {
         return false
     }
     
-    common_ocr(type, imagePath, customOptions) {
+    common_ocr(type, imagePath, requestId, customOptions) {
         // imagePath = path.join(process.cwd(), './testdata/cgp_zh.png');
-        var imageBuf = fs.readFileSync(imagePath);
-        var General_Basic_Url = `${Basic_Url}/${type}`;
-        var params = 'image=' + encodeURIComponent(imageBuf.toString('base64')) + qs.stringify(customOptions);
+        var requestBaseUrl = ''
+        switch(type){
+            case 'form_ocr_request':
+                requestBaseUrl = Form_Base_Url;
+                break;
+            case 'form_ocr_get_request_result':
+                requestBaseUrl = Form_Base_Url;
+                break;
+            default:
+                requestBaseUrl = Basic_Url;
+        }
+        var General_Basic_Url = `${requestBaseUrl}/${Baidu_ocr_Config.Ocr_Type[type]}`;
+        if(imagePath){
+            var imageBuf = fs.readFileSync(imagePath);
+            var params = 'image=' + encodeURIComponent(imageBuf.toString('base64')) + qs.stringify(customOptions);
+        } else {
+            var params = 'request_id=' + requestId;
+        }
         
         var header = {
             'Content-Type': 'application/x-www-form-urlencoded'

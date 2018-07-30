@@ -58,6 +58,13 @@ var baidu_ocr_general_Router = require('./routes/singleton_test');
 app.use('/singleton_test', baidu_ocr_general_Router);
 var uploadRouter = require('./routes/upload');
 app.use('/api/upload', uploadRouter);
+var uploadManyRouter = require('./routes/upload_many');
+app.use('/api/uploadmany', uploadManyRouter);
+
+var downloadFormExcelRouter = require('./routes/download_form_excel');
+app.use('/api/downloadformexcel', downloadFormExcelRouter);
+var downloadCardExcelRouter = require('./routes/download_card_excel');
+app.use('/api/downloadcardexcel', downloadCardExcelRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
