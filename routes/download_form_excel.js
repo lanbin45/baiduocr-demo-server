@@ -9,8 +9,8 @@ var mailTransporter = nodeMailer.createTransport({
     secureConnection: true, // 使用SSL方式，防止信息被窃取
     port: 465,
     auth: {
-        user: 'lanbin_blue@163.com',
-        pass: 'xtl19930213' // 使用时必须提供明文密码
+        user: 'alphatest@163.com',
+        pass: 'alpha@B1008' // 使用时必须提供明文密码
     }
 });
 
@@ -28,7 +28,7 @@ router.post('/', function(req, res, next) {
           res.send(err)
       } else {
           var options = {
-            from: '"兰斌" <lanbin_blue@163.com>',
+            from: '"alpha_test" <alphatest@163.com>',
             to: email,
             subject: '文字识别结果测试邮件',
             text: '文字识别结果附件发送测试',

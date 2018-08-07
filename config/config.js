@@ -20,6 +20,7 @@ var config = {
             passport: 'passport',               // 护照识别
             business_card: 'business_card',     // 名片识别
             form_ocr_request: 'form_ocr/request',// 表格文字识别
+            form: 'form',                       // 表格文字识别、同步
             form_ocr_get_request_result: 'form_ocr/get_request_result',// 获取表格识别结果
             receipt: 'receipt',                 // 通用票据识别
             qrcode: 'qrcode'                    // 二维码识别
